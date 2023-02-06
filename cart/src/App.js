@@ -64,12 +64,22 @@ class App extends React.Component {
           }
       )
   }
+  getCount=()=>{
+    const {products}=this.state;
+    let count=0;
+    {
+      products.map((product)=>{
+        count+=product.qty;
+      })
+    }
+    return count;
+  }
   render(){
     const {products}=this.state;
     return (
       <div className="App">
         
-          <Navbar/>
+          <Navbar count={this.getCount()}/>
           <Cart
             products={products}
             onIncreaseQuantity={this.handleIncreaseQuantity}
