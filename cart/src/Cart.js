@@ -1,68 +1,7 @@
 import React from 'react';
 import CartItem from './CartItem';
-class Cart extends React.Component{
-    constructor(){
-        super(); //this will call the constructor of the component class
-        this.state={
-            products:[
-                {
-                    price:99,
-                    title:'Watch',
-                    qty:1,
-                    img:'',
-                    id:1
-                },
-                {
-                    price:999,
-                    title:'Mobile Phone',
-                    qty:1,
-                    img:'',
-                    id:2,
-                },
-                {
-                    price:69,
-                    title:'Tablet',
-                    qty:1,
-                    img:'',
-                    id:4
-                }
-            ]
-        }
-        //this.increaseQuantity=this.increaseQuantity.bind(this);
-    }
-
-    handleIncreaseQuantity=(product)=>{
-        const {products}=this.state;
-        const index=products.indexOf(product);
-        products[index].qty+=1;
-        this.setState({
-            products:products
-        })
-
-    }
-    handleDecreaseQuantity=(product)=>{
-      
-        const {products}=this.state;
-        const index=products.indexOf(product);
-        if(products[index].qty==0){
-            return ;
-        }
-        products[index].qty-=1;
-        this.setState({
-            products:products
-        })
-    }
-    handleDeleteProduct=(id)=>{
-        const {products}=this.state;
-        const items=products.filter((item)=>item.id!==id);
-        this.setState(
-            {
-                products:items
-            }
-        )
-    }
-    render(){
-        const {products}=this.state;
+const Cart=(props)=>{
+        const {products}=props;
         return(
             <div className="cart">
                 
@@ -71,9 +10,9 @@ class Cart extends React.Component{
                         <CartItem 
                             product={product} 
                             key={product.id}
-                            onIncreaseQuantity={this.handleIncreaseQuantity}
-                            onDecreaseQuantity={this.handleDecreaseQuantity}
-                            onDeleteProduct={this.handleDeleteProduct}
+                            onIncreaseQuantity={props.onIncreaseQuantity}
+                            onDecreaseQuantity={props.onDecreaseQuantity}
+                            onDeleteProduct={props.onDeleteProduct}
                         />
                     )
 
@@ -81,7 +20,7 @@ class Cart extends React.Component{
                 
             </div>
         );
-    }
+    
 }
 
 export default Cart;
