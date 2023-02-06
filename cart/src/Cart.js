@@ -3,8 +3,9 @@ import CartItem from './CartItem';
 class Cart extends React.Component{
     render(){
         return(
-            <div>
-                <CartItem/>
+            <div className="cart">
+                <CartItem qty={1} price={99} title={"Watch"} img={''}/>
+                
             </div>
         );
     }
